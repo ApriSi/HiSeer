@@ -1,0 +1,14 @@
+﻿{
+  "TextCommands": {
+    "0": {
+      "commandName": "hello",
+      "commandUsage": "/hello",
+      "output": "Hello There!"
+    },
+    "1": {
+      "commandName": "life",
+      "commandUsage": "/life",
+      "output": "Life could be dreams!"
+    }
+  }
+}
