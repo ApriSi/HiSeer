@@ -1,5 +1,12 @@
 ﻿using System;
 using System.Windows.Controls;
+using HiSeer.src.Genshin;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace HiSeer.src.Commands
 {
@@ -13,6 +20,7 @@ namespace HiSeer.src.Commands
 
         public override void ExecuteCommand(ListView chatBox)
         {
+            GetCharacterInfo(chatBox, "albedo");
             switch(name)
             {
                 case "clear":
@@ -29,6 +37,32 @@ namespace HiSeer.src.Commands
         void Clear(ListView chatBox)
         {
             chatBox.Items.Clear();
+        }
+
+        
+        void GetCharacterInfo(ListView chatBox, string characterName)
+        {
+            //string characterInfo = File.ReadAllText(new Uri("https://api.genshin.dev/characters/albedo").ToString());
+
+            var webRequest = WebRequest.Create("https://api.genshin.dev/characters/" + characterName) as HttpWebRequest;
+            if (webRequest == null)
+            {
+                return;
+            }
+
+            webRequest.ContentType = "application/json";
+            webRequest.UserAgent = "Nothing";
+
+            using (var s = webRequest.GetResponse().GetResponseStream())
+            {
+                using (var sr = new StreamReader(s))
+                {
+                    var contributorsAsJson = sr.ReadToEnd();
+                    Character character = JsonConvert.DeserializeObject<Character>(contributorsAsJson);
+                    string characterInfo;
+                }
+            }
+            //Console.WriteLine(characterInfo);
         }
     }
 }

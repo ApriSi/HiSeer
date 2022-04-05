@@ -18,6 +18,7 @@ namespace HiSeer
         private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
         private void OnExitClick(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
+        private void OnMinimizeClick(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
         private void OnLoadedChatBox(object sender, RoutedEventArgs e)
         {
@@ -55,7 +56,7 @@ namespace HiSeer
         {
             string commandList = "/help\n";
 
-            string fileText = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName}/src/Commands/Commands.json");
+            string fileText = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
             JObject command = JObject.Parse(fileText);
 
             int length = ((JObject)command["TextCommands"]).Count;
