@@ -17,12 +17,12 @@ namespace HiSeer.src.Commands
             name = commandName;
         }
 
-        public override void ExecuteCommand(ListView chatBox)
+        public override void ExecuteCommand(ListBox chatBox)
         {
             throw new NotImplementedException();
         }
 
-        public override void ExecuteCommand(ListView chatBox, string parameter)
+        public override void ExecuteCommand(ListBox chatBox, string parameter)
         {
             switch (name)
             {
@@ -35,7 +35,7 @@ namespace HiSeer.src.Commands
             }
         }
         
-        void GetCharacterInfo(ListView chatBox, string name)
+        void GetCharacterInfo(ListBox chatBox, string name)
         {
             string characterName = name.ToLower();
             var webRequest = WebRequest.Create("https://api.genshin.dev/characters/" + characterName) as HttpWebRequest;
@@ -68,7 +68,7 @@ namespace HiSeer.src.Commands
             }
         }
 
-        void GetWeaponInfo(ListView chatBox, string name)
+        void GetWeaponInfo(ListBox chatBox, string name)
         {
             string weaponName = name.ToLower();
             var webRequest = WebRequest.Create("https://api.genshin.dev/weapons/" + weaponName) as HttpWebRequest;

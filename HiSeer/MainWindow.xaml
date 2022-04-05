@@ -49,12 +49,12 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <ListView x:Name="ChatBox"
+            <ListBox x:Name="ChatBox"
                       Background="#57606f"
                       BorderThickness="0"
                       Height="370" 
                       Width="315"
-                      VerticalAlignment="Bottom" Loaded="OnLoadedChatBox" Foreground="White" Focusable="False"/>
+                      VerticalAlignment="Bottom" Loaded="OnLoadedChatBox" Foreground="White" Focusable="False" BorderBrush="{x:Null}"/>
         </Grid>
 
         <Grid Grid.Row="2">

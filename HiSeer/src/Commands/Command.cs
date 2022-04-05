@@ -13,8 +13,8 @@ namespace HiSeer.src.Commands
             this.commandUsage = commandUsage;
         }
 
-        public abstract void ExecuteCommand(ListView chatBox);
-        public abstract void ExecuteCommand(ListView chatBox, string parameter);
+        public abstract void ExecuteCommand(ListBox chatBox);
+        public abstract void ExecuteCommand(ListBox chatBox, string parameter);
 
         public string GetUsage() => commandUsage;
         public string GetName() => commandName;

@@ -10,11 +10,11 @@ namespace HiSeer.src.Commands
         {
         }
 
-        public override void ExecuteCommand(ListView chatBox)
+        public override void ExecuteCommand(ListBox chatBox)
         {
         }
 
-        public override void ExecuteCommand(ListView chatBox, string parameter)
+        public override void ExecuteCommand(ListBox chatBox, string parameter)
         {
             Image image = new Image();
             try

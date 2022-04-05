@@ -11,7 +11,7 @@ namespace HiSeer.src.Commands
             this.output = output;
         }
 
-        public override void ExecuteCommand(ListView chatBox)
+        public override void ExecuteCommand(ListBox chatBox)
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Text = output;
@@ -19,7 +19,7 @@ namespace HiSeer.src.Commands
             chatBox.Items.Add(textBlock);
         }
 
-        public override void ExecuteCommand(ListView chatBox, string parameter)
+        public override void ExecuteCommand(ListBox chatBox, string parameter)
         {
             throw new System.NotImplementedException();
         }

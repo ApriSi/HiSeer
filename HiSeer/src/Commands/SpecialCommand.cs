@@ -11,7 +11,7 @@ namespace HiSeer.src.Commands
             name = commandName;
         }
 
-        public override void ExecuteCommand(ListView chatBox)
+        public override void ExecuteCommand(ListBox chatBox)
         {
             switch (name)
             {
@@ -21,7 +21,7 @@ namespace HiSeer.src.Commands
             }
         }
 
-        public override void ExecuteCommand(ListView chatBox, string parameter)
+        public override void ExecuteCommand(ListBox chatBox, string parameter)
         {
             switch (name)
             {
@@ -31,12 +31,12 @@ namespace HiSeer.src.Commands
             }
         }
 
-        void Clear(ListView chatBox)
+        void Clear(ListBox chatBox)
         {
             chatBox.Items.Clear();
         }
 
-        void Reply(ListView chatBox, string parameter)
+        void Reply(ListBox chatBox, string parameter)
         {
             chatBox.Items.Add(parameter);
         }
