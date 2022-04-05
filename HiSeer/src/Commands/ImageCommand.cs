@@ -22,7 +22,7 @@ namespace HiSeer.src.Commands
                 Uri uri = new Uri(parameter);
                 image.Source = new BitmapImage(uri);
 
-                image.Width = 100;
+                image.Width = 280;
                 chatBox.Items.Add(image);
             } catch
             {

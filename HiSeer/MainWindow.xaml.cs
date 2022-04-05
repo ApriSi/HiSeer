@@ -13,10 +13,7 @@ namespace HiSeer
     {
         List<Command> commands = new List<Command>();
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
 
         private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
@@ -47,23 +44,10 @@ namespace HiSeer
                         } catch (Exception ex)
                         {
                             Console.WriteLine(ex);
-                            CommandInput.Text = "this command isn't valid!";
+                            CommandInput.Text = "This isn't a valid command!";
                         }
                     }
                 }
-            }
-        }
-        
-        private void ExecuteImageCommand(ImageCommand command, string[] commandName)
-        {
-            try
-            {
-                //command.ImagePath = commandName[1];
-                command.ExecuteCommand(ChatBox);
-            }
-            catch
-            {
-                CommandInput.Text = "Please write /image imageurl";
             }
         }
 
