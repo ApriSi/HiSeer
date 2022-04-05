@@ -21,7 +21,6 @@ namespace HiSeer.src.Commands
             {
                 case "clear":
                     Clear(chatBox);
-                    GetWeaponInfo(chatBox, "alley-hunter");
                     break;
             }
         }
@@ -32,6 +31,9 @@ namespace HiSeer.src.Commands
             {
                 case "character":
                     GetCharacterInfo(chatBox, parameter);
+                    break;
+                case "weapon":
+                    GetWeaponInfo(chatBox, parameter);
                     break;
             }
         }
@@ -79,7 +81,6 @@ namespace HiSeer.src.Commands
             //Console.WriteLine(characterInfo);
         }
 
-
         void GetWeaponInfo(ListView chatBox, string weaponName)
         {
             //string characterInfo = File.ReadAllText(new Uri("https://api.genshin.dev/characters/albedo").ToString());
@@ -99,7 +100,7 @@ namespace HiSeer.src.Commands
                 {
                     var contributorsAsJson = sr.ReadToEnd();
                     Weapon weapon = JsonConvert.DeserializeObject<Weapon>(contributorsAsJson);
-                    Console.WriteLine(weapon);
+                    
                     string weaponInfo =
                         $"Name: {weapon.Name}\n" +
                         $"type: {weapon.Type}\n" +
