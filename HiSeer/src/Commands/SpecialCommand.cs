@@ -20,7 +20,6 @@ namespace HiSeer.src.Commands
 
         public override void ExecuteCommand(ListView chatBox)
         {
-            GetCharacterInfo(chatBox, "albedo");
             switch(name)
             {
                 case "clear":
