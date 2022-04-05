@@ -83,6 +83,7 @@
     </ApplicationDefinition>
     <Compile Include="src\Commands\Command.cs" />
     <Compile Include="src\Commands\ImageCommand.cs" />
+    <Compile Include="src\Commands\SpecialCommand.cs" />
     <Compile Include="src\Commands\TextCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

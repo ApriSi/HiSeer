@@ -9,6 +9,18 @@
       "commandName": "life",
       "commandUsage": "/life",
       "output": "Life could be dreams!"
+    },
+    "2": {
+      "commandName": "love",
+      "commandUsage": "/love",
+      "output": "You are always loved <3"
+    }
+  },
+  "SpecialCommands": {
+    "0": {
+      "commandName": "clear",
+      "commandUsage": "/clear",
+      "output": "command: Clear()"
     }
   }
 }

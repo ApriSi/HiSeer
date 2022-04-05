@@ -24,16 +24,9 @@ namespace HiSeer
 
         private void OnLoadedChatBox(object sender, RoutedEventArgs e)
         {
-            string commandList = "/help\n";
-
-            LoadTextCommands();
-
             commands.Add(new ImageCommand("image", "/image ImageName"));
-            foreach (Command command in commands)
-            {
-                commandList += command.GetUsage() + "\n";
-            }
-            commands.Add(new TextCommand("help", "/help", commandList));
+            commands.Add(new SpecialCommand("clear", "/clear"));
+            LoadTextCommands();
         }
 
         private void InputGetKeyDown(object sender, KeyEventArgs e)
@@ -45,32 +38,39 @@ namespace HiSeer
                     string[] commandName = CommandInput.Text.Split(' ');
                     if (commandName[0] == "/" + command.GetName())
                     {
-                        bool IsImageCommand = command.GetType() == typeof(ImageCommand);
-                        bool IsTextCommand = command.GetType() == typeof(TextCommand);
-                        
-                        if (IsTextCommand)
-                            command.ExecuteCommand(ChatBox);
-
-                        if (IsImageCommand)
+                        try
                         {
-                            try
-                            {
-                                ImageCommand imageCommand = (ImageCommand)command;
-
-                                imageCommand.ImagePath = commandName[1];
-                                imageCommand.ExecuteCommand(ChatBox);
-                            } catch {
-                                CommandInput.Text = "Please write /image imageurl";
-                            }
+                            if (commandName.Length > 1 && commandName[1] != null)
+                                command.ExecuteCommand(ChatBox, commandName[1]);
+                            else
+                                command.ExecuteCommand(ChatBox);
+                        } catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                            CommandInput.Text = "this command isn't valid!";
                         }
                     }
-
                 }
             }
         }
-    
+        
+        private void ExecuteImageCommand(ImageCommand command, string[] commandName)
+        {
+            try
+            {
+                //command.ImagePath = commandName[1];
+                command.ExecuteCommand(ChatBox);
+            }
+            catch
+            {
+                CommandInput.Text = "Please write /image imageurl";
+            }
+        }
+
         private void LoadTextCommands()
         {
+            string commandList = "/help\n";
+
             string fileText = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName}/src/Commands/Commands.json");
             JObject command = JObject.Parse(fileText);
 
@@ -80,6 +80,12 @@ namespace HiSeer
                 TextCommand textCommand = JsonConvert.DeserializeObject<TextCommand>(command["TextCommands"][i.ToString()].ToString());
                 commands.Add(textCommand);
             }
+
+            foreach (Command cmd in commands)
+            {
+                commandList += cmd.GetUsage() + "\n";
+            }
+            commands.Add(new TextCommand("help", "/help", commandList));
         }
     }
 }

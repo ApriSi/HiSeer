@@ -18,5 +18,10 @@ namespace HiSeer.src.Commands
             textBlock.Foreground = Brushes.White;
             chatBox.Items.Add(textBlock);
         }
+
+        public override void ExecuteCommand(ListView chatBox, string parameter)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

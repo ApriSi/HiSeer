@@ -14,6 +14,7 @@ namespace HiSeer.src.Commands
         }
 
         public abstract void ExecuteCommand(ListView chatBox);
+        public abstract void ExecuteCommand(ListView chatBox, string parameter);
 
         public string GetUsage() => commandUsage;
         public string GetName() => commandName;
