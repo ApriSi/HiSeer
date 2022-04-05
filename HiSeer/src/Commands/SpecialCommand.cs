@@ -24,6 +24,7 @@ namespace HiSeer.src.Commands
             {
                 case "clear":
                     Clear(chatBox);
+                    GetWeaponInfo(chatBox, "alley-hunter");
                     break;
             }
         }
@@ -67,6 +68,42 @@ namespace HiSeer.src.Commands
                         $"Rarity: {character.Rarity}";
 
                     chatBox.Items.Add(characterInfo);
+                }
+            }
+            //Console.WriteLine(characterInfo);
+        }
+
+
+        void GetWeaponInfo(ListView chatBox, string weaponName)
+        {
+            //string characterInfo = File.ReadAllText(new Uri("https://api.genshin.dev/characters/albedo").ToString());
+
+            var webRequest = WebRequest.Create("https://api.genshin.dev/weapons/" + weaponName) as HttpWebRequest;
+            if (webRequest == null)
+            {
+                return;
+            }
+
+            webRequest.ContentType = "application/json";
+            webRequest.UserAgent = "Nothing";
+
+            using (var s = webRequest.GetResponse().GetResponseStream())
+            {
+                using (var sr = new StreamReader(s))
+                {
+                    var contributorsAsJson = sr.ReadToEnd();
+                    Weapon weapon = JsonConvert.DeserializeObject<Weapon>(contributorsAsJson);
+                    Console.WriteLine(weapon);
+                    string weaponInfo =
+                        $"Name: {weapon.Name}\n" +
+                        $"type: {weapon.Type}\n" +
+                        $"Rarity: {weapon.Rarity}\n" +
+                        $"Base Attack: {weapon.BaseAttack}\n" +
+                        $"Sub Stat: {weapon.SubStat}\n" +
+                        $"Passive Name: {weapon.PassiveName}\n" +
+                        $"Description:\n{weapon.PassiveDesc}";
+
+                    chatBox.Items.Add(weaponInfo);
                 }
             }
             //Console.WriteLine(characterInfo);

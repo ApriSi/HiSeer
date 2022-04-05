@@ -10,7 +10,7 @@ namespace HiSeer.src.Genshin
     {
         public string Name;
         public string Type;
-        public int Rarity;
+        public string Rarity;
         public int BaseAttack;
         public string SubStat;
         public string PassiveName;
@@ -21,7 +21,10 @@ namespace HiSeer.src.Genshin
         {
             Name = name;
             Type = type;
-            Rarity = rarity;
+            for (int i = 0; i < rarity; i++)
+            {
+                Rarity += "★";
+            }
             BaseAttack = baseAttack;
             SubStat = subStat;
             PassiveName = passiveName;
