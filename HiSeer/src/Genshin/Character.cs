@@ -11,9 +11,8 @@
         public string Rarity;
 
         public string Birthday;
-        public string Description;
 
-        public Character(string name, string vision, string weapon, string nation, string affiliation, string rarity, string birthday, string description)
+        public Character(string name, string vision, string weapon, string nation, string affiliation, string rarity, string birthday)
         {
             Name = name;
             Vision = vision;
@@ -25,7 +24,6 @@
                 Rarity += "★";
             }
             Birthday = birthday.Replace("0000-", "");
-            Description = description;
         }
     }
 }

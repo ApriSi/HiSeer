@@ -126,6 +126,7 @@
     </ApplicationDefinition>
     <Compile Include="src\Commands\Command.cs" />
     <Compile Include="src\Commands\ImageCommand.cs" />
+    <Compile Include="src\Commands\GenshinCommand.cs" />
     <Compile Include="src\Commands\SpecialCommand.cs" />
     <Compile Include="src\Commands\TextCommand.cs" />
     <Compile Include="src\Genshin\Character.cs" />

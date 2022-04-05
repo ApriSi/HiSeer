@@ -22,10 +22,10 @@ namespace HiSeer
 
         private void OnLoadedChatBox(object sender, RoutedEventArgs e)
         {
-            commands.Add(new ImageCommand("image", "/image ImageName"));
-            commands.Add(new SpecialCommand("character", "/character GenshinCharacterName"));
-            commands.Add(new SpecialCommand("weapon", "/weapon GenshinWeaponName"));
-            commands.Add(new SpecialCommand("clear", "/clear"));
+            commands.Add(new ImageCommand("image", "/image url"));
+            
+            LoadSpecialCommands();
+            LoadGenshinCommands();
             LoadTextCommands();
         }
 
@@ -54,6 +54,7 @@ namespace HiSeer
             }
         }
 
+
         private void LoadTextCommands()
         {
             string commandList = "/help\n";
@@ -73,6 +74,32 @@ namespace HiSeer
                 commandList += cmd.GetUsage() + "\n";
             }
             commands.Add(new TextCommand("help", "/help", commandList));
+        }
+
+        private void LoadGenshinCommands()
+        {
+            string fileText = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
+            JObject command = JObject.Parse(fileText);
+
+            int length = ((JObject)command["GenshinCommands"]).Count;
+            for (int i = 0; i < length; i++)
+            {
+                GenshinCommand genshinCommand = JsonConvert.DeserializeObject<GenshinCommand>(command["GenshinCommands"][i.ToString()].ToString());
+                commands.Add(genshinCommand);
+            }
+        }
+
+        private void LoadSpecialCommands()
+        {
+            string fileText = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
+            JObject command = JObject.Parse(fileText);
+
+            int length = ((JObject)command["SpecialCommands"]).Count;
+            for (int i = 0; i < length; i++)
+            {
+                SpecialCommand specialCommand = JsonConvert.DeserializeObject<SpecialCommand>(command["SpecialCommands"][i.ToString()].ToString());
+                commands.Add(specialCommand);
+            }
         }
     }
 }

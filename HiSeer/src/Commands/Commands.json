@@ -16,11 +16,25 @@
       "output": "You are always loved <3"
     }
   },
+
   "SpecialCommands": {
     "0": {
       "commandName": "clear",
-      "commandUsage": "/clear",
-      "output": "command: Clear()"
+      "commandUsage": "/clear"
+    },
+    "1": {
+      "commandName": "reply",
+      "commandUsage": "/reply message"
+    }
+  },
+    "GenshinCommands": {
+      "0": {
+        "commandName": "character",
+        "commandUsage": "/character CharacterName"
+      },
+      "1": {
+        "commandName": "weapon",
+        "commandUsage": "/weapon WeaponName"
+      }
     }
   }
-}
