@@ -23,6 +23,7 @@ namespace HiSeer
         private void OnLoadedChatBox(object sender, RoutedEventArgs e)
         {
             commands.Add(new ImageCommand("image", "/image ImageName"));
+            commands.Add(new SpecialCommand("character", "/character GenshinCharacterName"));
             commands.Add(new SpecialCommand("clear", "/clear"));
             LoadTextCommands();
         }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using HiSeer.src.Genshin;
 using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
+using System.Windows.Media;
 
 namespace HiSeer.src.Commands
 {
@@ -20,7 +17,7 @@ namespace HiSeer.src.Commands
 
         public override void ExecuteCommand(ListView chatBox)
         {
-            switch(name)
+            switch (name)
             {
                 case "clear":
                     Clear(chatBox);
@@ -30,7 +27,12 @@ namespace HiSeer.src.Commands
 
         public override void ExecuteCommand(ListView chatBox, string parameter)
         {
-            throw new NotImplementedException();
+            switch (name)
+            {
+                case "character":
+                    GetCharacterInfo(chatBox, parameter);
+                    break;
+            }
         }
 
         void Clear(ListView chatBox)
@@ -64,9 +66,13 @@ namespace HiSeer.src.Commands
                         $"Weapon: {character.Weapon}\n" +
                         $"Nation: {character.Nation}\n" +
                         $"Affiliation: {character.Affiliation}\n" +
-                        $"Rarity: {character.Rarity}";
-
-                    chatBox.Items.Add(characterInfo);
+                        $"Rarity: {character.Rarity}\n" +
+                        $"Birthday: {character.Birthday}\n" +
+                        $"Description: {character.Description}";
+                    TextBlock textBlock = new TextBlock();
+                    textBlock.Text = characterInfo;
+                    textBlock.Width = 200;
+                    chatBox.Items.Add(textBlock);
                 }
             }
             //Console.WriteLine(characterInfo);

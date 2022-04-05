@@ -24,7 +24,7 @@
             {
                 Rarity += "★";
             }
-            Birthday = birthday;
+            Birthday = birthday.Replace("0000-", "");
             Description = description;
         }
     }
