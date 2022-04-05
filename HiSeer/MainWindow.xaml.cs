@@ -23,10 +23,11 @@ namespace HiSeer
         private void OnLoadedChatBox(object sender, RoutedEventArgs e)
         {
             commands.Add(new ImageCommand("image", "/image url"));
-            
-            LoadSpecialCommands();
-            LoadGenshinCommands();
-            LoadTextCommands();
+
+            LoadCommands<SpecialCommand>("SpecialCommands");
+            LoadCommands<GenshinCommand>("GenshinCommands");
+            LoadCommands<TextCommand>("TextCommands");
+            HelpCommand();
         }
 
         private void InputGetKeyDown(object sender, KeyEventArgs e)
@@ -54,21 +55,9 @@ namespace HiSeer
             }
         }
 
-
-        private void LoadTextCommands()
+        private void HelpCommand()
         {
             string commandList = "/help\n";
-
-            string fileText = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
-            JObject command = JObject.Parse(fileText);
-
-            int length = ((JObject)command["TextCommands"]).Count;
-            for (int i = 0; i < length; i++)
-            {
-                TextCommand textCommand = JsonConvert.DeserializeObject<TextCommand>(command["TextCommands"][i.ToString()].ToString());
-                commands.Add(textCommand);
-            }
-
             foreach (Command cmd in commands)
             {
                 commandList += cmd.GetUsage() + "\n";
@@ -76,30 +65,23 @@ namespace HiSeer
             commands.Add(new TextCommand("help", "/help", commandList));
         }
 
-        private void LoadGenshinCommands()
+        private void LoadCommands<T>(string commandType)
         {
-            string fileText = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
-            JObject command = JObject.Parse(fileText);
-
-            int length = ((JObject)command["GenshinCommands"]).Count;
+            JObject cmds = GetJsonObject($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
+            int length = ((JObject)cmds[commandType]).Count;
             for (int i = 0; i < length; i++)
             {
-                GenshinCommand genshinCommand = JsonConvert.DeserializeObject<GenshinCommand>(command["GenshinCommands"][i.ToString()].ToString());
-                commands.Add(genshinCommand);
+                T command = JsonConvert.DeserializeObject<T>(cmds[commandType][i.ToString()].ToString());
+                commands.Add(command as Command);
             }
         }
 
-        private void LoadSpecialCommands()
+        private JObject GetJsonObject(string path)
         {
-            string fileText = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
-            JObject command = JObject.Parse(fileText);
+            string json = File.ReadAllText(path);
+            var obj = JObject.Parse(json);
 
-            int length = ((JObject)command["SpecialCommands"]).Count;
-            for (int i = 0; i < length; i++)
-            {
-                SpecialCommand specialCommand = JsonConvert.DeserializeObject<SpecialCommand>(command["SpecialCommands"][i.ToString()].ToString());
-                commands.Add(specialCommand);
-            }
+            return obj;
         }
     }
 }
