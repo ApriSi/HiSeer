@@ -8,19 +8,22 @@
         public string Nation;
         public string Affiliation;
 
-        public int Rarity;
+        public string Rarity;
 
         public string Birthday;
         public string Description;
 
-        public Character(string name, string vision, string weapon, string nation, string affiliation, int rarity, string birthday, string description)
+        public Character(string name, string vision, string weapon, string nation, string affiliation, string rarity, string birthday, string description)
         {
             Name = name;
             Vision = vision;
             Weapon = weapon;
             Nation = nation;
             Affiliation = affiliation;
-            Rarity = rarity;
+            for (int i = 0; i < int.Parse(rarity); i++)
+            {
+                Rarity += "★";
+            }
             Birthday = birthday;
             Description = description;
         }

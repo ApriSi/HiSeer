@@ -59,7 +59,15 @@ namespace HiSeer.src.Commands
                 {
                     var contributorsAsJson = sr.ReadToEnd();
                     Character character = JsonConvert.DeserializeObject<Character>(contributorsAsJson);
-                    string characterInfo;
+                    string characterInfo = 
+                        $"Name: {character.Name}\n" +
+                        $"Vision: {character.Vision}\n" +
+                        $"Weapon: {character.Weapon}\n" +
+                        $"Nation: {character.Nation}\n" +
+                        $"Affiliation: {character.Affiliation}\n" +
+                        $"Rarity: {character.Rarity}";
+
+                    chatBox.Items.Add(characterInfo);
                 }
             }
             //Console.WriteLine(characterInfo);
