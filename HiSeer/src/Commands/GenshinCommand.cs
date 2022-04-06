@@ -3,7 +3,6 @@ using HiSeer.src.Genshin;
 using HiSeer.src.UserControls;
 using Newtonsoft.Json;
 using System;
-using System.Windows.Media.Imaging;
 
 namespace HiSeer.src.Commands
 {

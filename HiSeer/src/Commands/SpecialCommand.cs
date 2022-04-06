@@ -25,7 +25,7 @@ namespace HiSeer.src.Commands
             switch (name)
             {
                 case "reply":
-                    Reply(chatBox, parameter[1]);
+                    Reply(chatBox, parameter);
                     break;
             }
         }
@@ -35,9 +35,14 @@ namespace HiSeer.src.Commands
             chatBox.Items.Clear();
         }
 
-        void Reply(ListBox chatBox, string parameter)
+        void Reply(ListBox chatBox, string[] parameter)
         {
-            chatBox.Items.Add(parameter);
+            string text = "";
+            for (int i = 1; i < parameter.Length; i++)
+            {
+                text += " " + parameter[i];
+            }
+            chatBox.Items.Add(text);
         }
     }
 }
