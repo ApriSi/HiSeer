@@ -23,7 +23,11 @@
             {
                 Rarity += "★";
             }
-            Birthday = birthday.Replace("0000-", "");
+            if(birthday != null)
+            {
+                Birthday = birthday.Replace("0000-", "");
+            }
+
         }
     }
 }

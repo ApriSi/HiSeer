@@ -8,10 +8,10 @@
         public int Humidity;
         public int Min_temp;
         public int Max_temp;
-        public int Wind_speed;
+        public float Wind_speed;
         public int Wind_degrees;
 
-        public Weather(int cloud_pct, int temp, int feels_like, int humidity, int min_temp, int max_temp, int wind_speed, int wind_degrees)
+        public Weather(int cloud_pct, int temp, int feels_like, int humidity, int min_temp, int max_temp, float wind_speed, int wind_degrees)
         {
             Cloud_pct = cloud_pct;
             Temp = temp;

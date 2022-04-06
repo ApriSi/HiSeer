@@ -21,12 +21,12 @@ namespace HiSeer.src.Commands
             }
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string parameter)
+        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
         {
             switch (name)
             {
                 case "reply":
-                    Reply(chatBox, parameter);
+                    Reply(chatBox, parameter[1]);
                     break;
             }
         }

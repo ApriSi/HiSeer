@@ -27,14 +27,20 @@
       "commandUsage": "/reply message"
     }
   },
-    "GenshinCommands": {
-      "0": {
-        "commandName": "character",
-        "commandUsage": "/character CharacterName"
-      },
-      "1": {
-        "commandName": "weapon",
-        "commandUsage": "/weapon WeaponName"
-      }
+  "GenshinCommands": {
+    "0": {
+      "commandName": "character",
+      "commandUsage": "/character CharacterName"
+    },
+    "1": {
+      "commandName": "weapon",
+      "commandUsage": "/weapon WeaponName"
+    }
+  },
+  "WeatherCommands": {
+    "0": {
+      "commandName": "weather",
+      "commandUsage": "/weather city zipcode"
     }
   }
+}

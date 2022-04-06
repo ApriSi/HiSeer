@@ -19,7 +19,7 @@ namespace HiSeer.src.Commands
             chatBox.Items.Add(textBlock);
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string parameter)
+        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
         {
             throw new System.NotImplementedException();
         }

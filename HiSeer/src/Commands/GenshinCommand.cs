@@ -21,15 +21,15 @@ namespace HiSeer.src.Commands
             throw new NotImplementedException();
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string parameter)
+        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
         {
             switch (name)
             {
                 case "character":
-                    GetCharacterInfo(chatBox, parameter);
+                    GetCharacterInfo(chatBox, parameter[1]);
                     break;
                 case "weapon":
-                    GetWeaponInfo(chatBox, parameter);
+                    GetWeaponInfo(chatBox, parameter[1]);
                     break;
             }
         }
@@ -48,7 +48,7 @@ namespace HiSeer.src.Commands
                 $"Nation: {character.Nation}\n" +
                 $"Affiliation: {character.Affiliation}\n" +
                 $"Rarity: {character.Rarity}\n" +
-                $"Birthday: {character.Birthday}\n";
+                $"Birthday: {character.Birthday}";
 
             chatBox.Items.Add(CreateImage($"https://api.genshin.dev/characters/{characterName}/card"));
             chatBox.Items.Add(characterInfo);

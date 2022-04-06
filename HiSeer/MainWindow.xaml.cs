@@ -27,6 +27,7 @@ namespace HiSeer
             LoadCommands<SpecialCommand>("SpecialCommands");
             LoadCommands<GenshinCommand>("GenshinCommands");
             LoadCommands<TextCommand>("TextCommands");
+            LoadCommands<WeatherCommand>("WeatherCommands");
             HelpCommand();
         }
 
@@ -42,7 +43,7 @@ namespace HiSeer
                         try
                         {
                             if (commandName.Length > 1 && commandName[1] != null)
-                                command.ExecuteCommand(ChatBox, commandName[1]);
+                                command.ExecuteCommand(ChatBox, commandName);
                             else
                                 command.ExecuteCommand(ChatBox);
                         } catch (Exception ex)

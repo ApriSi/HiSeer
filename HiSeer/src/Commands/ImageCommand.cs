@@ -14,12 +14,12 @@ namespace HiSeer.src.Commands
         {
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string parameter)
+        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
         {
             Image image = new Image();
             try
             {
-                Uri uri = new Uri(parameter);
+                Uri uri = new Uri(parameter[1]);
                 image.Source = new BitmapImage(uri);
 
                 image.Width = 280;
