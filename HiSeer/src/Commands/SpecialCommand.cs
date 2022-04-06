@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Windows.Controls;
 
 namespace HiSeer.src.Commands
 {
@@ -16,6 +18,9 @@ namespace HiSeer.src.Commands
             {
                 case "clear":
                     Clear(chatBox);
+                    break;
+                case "dog":
+                    Dog(chatBox);
                     break;
             }
         }
@@ -38,6 +43,14 @@ namespace HiSeer.src.Commands
         void Reply(ListBox chatBox, string parameter)
         {
             chatBox.Items.Add(parameter);
+        }
+
+        void Dog(ListBox chatbox)
+        {
+            string json = WebsiteRequest.GetWebJson($"https://dog.ceo/api/breeds/image/random", null);
+            var obj = JsonConvert.DeserializeObject(json) as JObject;
+            Image image = ImageHandler.CreateImage(obj["message"].ToString());
+            chatbox.Items.Add(image);
         }
     }
 }

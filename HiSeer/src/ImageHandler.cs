@@ -11,7 +11,7 @@ namespace HiSeer.src
             Image icon = new Image();
             Uri uri = new Uri(path);
             icon.Source = new BitmapImage(uri);
-            icon.Width = 100;
+            icon.Width = 280;
 
             return icon;
         }

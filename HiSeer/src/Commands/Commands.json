@@ -25,6 +25,10 @@
     "1": {
       "commandName": "reply",
       "commandUsage": "/reply message"
+    },
+    "2": {
+      "commandName": "dog",
+      "commandUsage": "/dog"
     }
   },
   "GenshinCommands": {
