@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using HiSeer.src;
 
 namespace HiSeer
 {
@@ -23,11 +24,11 @@ namespace HiSeer
         private void OnLoadedChatBox(object sender, RoutedEventArgs e)
         {
             commands.Add(new ImageCommand("image", "/image url"));
-    
-            LoadCommands<SpecialCommand>("SpecialCommands");
-            LoadCommands<GenshinCommand>("GenshinCommands");
-            LoadCommands<TextCommand>("TextCommands");
-            LoadCommands<WeatherCommand>("WeatherCommands");
+
+            LoadCommandsFromJson<SpecialCommand>("SpecialCommands");
+            LoadCommandsFromJson<GenshinCommand>("GenshinCommands");
+            LoadCommandsFromJson<TextCommand>("TextCommands");
+            LoadCommandsFromJson<WeatherCommand>("WeatherCommands");
             HelpCommand();
         }
 
@@ -66,23 +67,15 @@ namespace HiSeer
             commands.Add(new TextCommand("help", "/help", commandList));
         }
 
-        private void LoadCommands<T>(string commandType)
+        private void LoadCommandsFromJson<T>(string commandType)
         {
-            JObject cmds = GetJsonObject($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
+            JObject cmds = JsonHandler.GetJsonObject($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
             int length = ((JObject)cmds[commandType]).Count;
             for (int i = 0; i < length; i++)
             {
                 T command = JsonConvert.DeserializeObject<T>(cmds[commandType][i.ToString()].ToString());
                 commands.Add(command as Command);
             }
-        }
-
-        private JObject GetJsonObject(string path)
-        {
-            string json = File.ReadAllText(path);
-            var obj = JObject.Parse(json);
-
-            return obj;
         }
     }
 }

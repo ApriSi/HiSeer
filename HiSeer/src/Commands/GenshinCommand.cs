@@ -1,8 +1,6 @@
 ﻿using System.Windows.Controls;
 using HiSeer.src.Genshin;
-using HiSeer.src;
 using HiSeer.src.UserControls;
-using System.IO;
 using Newtonsoft.Json;
 using System;
 using System.Windows.Media.Imaging;
@@ -52,7 +50,7 @@ namespace HiSeer.src.Commands
             characterControl.NationLable.Text = character.Nation;
             characterControl.DescriptionLable.Text = character.Description;
 
-            Image image = CreateImage($"https://api.genshin.dev/characters/{characterName}/card");
+            Image image = ImageHandler.CreateImage($"https://api.genshin.dev/characters/{characterName}/card");
 
             characterControl.CharacterImage.Source = image.Source;
             chatBox.Items.Add(characterControl);
@@ -74,22 +72,10 @@ namespace HiSeer.src.Commands
             weaponControl.LocationLable.Text = weapon.Location;
             weaponControl.DescriptionLable.Text = weapon.PassiveDesc;
 
-            Image image = CreateImage($"https://api.genshin.dev/weapons/{weaponName}/icon");
+            Image image = ImageHandler.CreateImage($"https://api.genshin.dev/weapons/{weaponName}/icon");
 
             weaponControl.WeaponIcon.Source = image.Source;
             chatBox.Items.Add(weaponControl);
-        }
-
-
-        // [TODO] Should probably be moved somewhere else [name] imagehandler.dk
-        Image CreateImage(string path)
-        {
-            Image icon = new Image();
-            Uri uri = new Uri(path);
-            icon.Source = new BitmapImage(uri);
-            icon.Width = 100;
-
-            return icon;
         }
     }
 }

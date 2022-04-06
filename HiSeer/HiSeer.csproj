@@ -132,6 +132,8 @@
     <Compile Include="src\Commands\WeatherCommand.cs" />
     <Compile Include="src\Genshin\Character.cs" />
     <Compile Include="src\Genshin\Weapon.cs" />
+    <Compile Include="src\ImageHandler.cs" />
+    <Compile Include="src\JsonHandler.cs" />
     <Compile Include="src\UserControls\CharacterControl.xaml.cs">
       <DependentUpon>CharacterControl.xaml</DependentUpon>
     </Compile>

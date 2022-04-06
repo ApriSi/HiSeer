@@ -34,8 +34,7 @@ namespace HiSeer.src
                     webRequest.Headers.Add(header.Key, header.Value);
                 }
             }
-                
-
+            
             return webRequest;
         }
     }
