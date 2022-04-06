@@ -23,7 +23,7 @@ namespace HiSeer
         private void OnLoadedChatBox(object sender, RoutedEventArgs e)
         {
             commands.Add(new ImageCommand("image", "/image url"));
-
+    
             LoadCommands<SpecialCommand>("SpecialCommands");
             LoadCommands<GenshinCommand>("GenshinCommands");
             LoadCommands<TextCommand>("TextCommands");
@@ -57,10 +57,10 @@ namespace HiSeer
 
         private void HelpCommand()
         {
-            string commandList = "/help\n";
+            string commandList = "/help";
             foreach (Command cmd in commands)
             {
-                commandList += cmd.GetUsage() + "\n";
+                commandList += "\n" + cmd.GetUsage();
             }
             commands.Add(new TextCommand("help", "/help", commandList));
         }

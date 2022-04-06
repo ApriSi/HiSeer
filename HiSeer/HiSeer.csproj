@@ -129,8 +129,11 @@
     <Compile Include="src\Commands\GenshinCommand.cs" />
     <Compile Include="src\Commands\SpecialCommand.cs" />
     <Compile Include="src\Commands\TextCommand.cs" />
+    <Compile Include="src\Commands\WeatherCommand.cs" />
     <Compile Include="src\Genshin\Character.cs" />
     <Compile Include="src\Genshin\Weapon.cs" />
+    <Compile Include="src\Weather.cs" />
+    <Compile Include="src\WebsiteRequest.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
