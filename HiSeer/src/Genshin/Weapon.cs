@@ -15,8 +15,9 @@ namespace HiSeer.src.Genshin
         public string SubStat;
         public string PassiveName;
         public string Location;
+        public string PassiveDesc;
 
-        public Weapon(string name, string type, int rarity, int baseAttack, string subStat, string passiveName, string location)
+        public Weapon(string name, string type, int rarity, int baseAttack, string subStat, string passiveName, string location, string passivedesc)
         {
             Name = name;
             Type = type;
@@ -28,6 +29,7 @@ namespace HiSeer.src.Genshin
             SubStat = subStat;
             PassiveName = passiveName;
             Location = location;
+            PassiveDesc = passivedesc;
         }
     }
 }

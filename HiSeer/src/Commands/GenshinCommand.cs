@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using HiSeer.src.Genshin;
 using HiSeer.src;
+using HiSeer.src.UserControls;
 using System.IO;
 using Newtonsoft.Json;
 using System;
@@ -40,18 +41,21 @@ namespace HiSeer.src.Commands
 
             string json = WebsiteRequest.GetWebJson("https://api.genshin.dev/characters/" + characterName, null);
             Character character = JsonConvert.DeserializeObject<Character>(json);
+            CharacterControl characterControl = new CharacterControl();
 
-            string characterInfo =
-                $"Name: {character.Name}\n" +
-                $"Vision: {character.Vision}\n" +
-                $"Weapon: {character.Weapon}\n" +
-                $"Nation: {character.Nation}\n" +
-                $"Affiliation: {character.Affiliation}\n" +
-                $"Rarity: {character.Rarity}\n" +
-                $"Birthday: {character.Birthday}";
+            characterControl.NameLable.Text = character.Name;
+            characterControl.RarityLable.Text = character.Rarity;
+            characterControl.BirthdayLable.Text = character.Birthday;
+            characterControl.WeaponLable.Text = character.Weapon;
+            characterControl.AffiliationLable.Text = character.Affiliation;
+            characterControl.VisionLable.Text = character.Vision;
+            characterControl.NationLable.Text = character.Nation;
+            characterControl.DescriptionLable.Text = character.Description;
 
-            chatBox.Items.Add(CreateImage($"https://api.genshin.dev/characters/{characterName}/card"));
-            chatBox.Items.Add(characterInfo);
+            Image image = CreateImage($"https://api.genshin.dev/characters/{characterName}/card");
+
+            characterControl.CharacterImage.Source = image.Source;
+            chatBox.Items.Add(characterControl);
         }
 
         void GetWeaponInfo(ListBox chatBox, string name)
@@ -60,21 +64,24 @@ namespace HiSeer.src.Commands
 
             string json = WebsiteRequest.GetWebJson("https://api.genshin.dev/weapons/" + weaponName, null);
             Weapon weapon = JsonConvert.DeserializeObject<Weapon>(json);
+            WeaponControl weaponControl = new WeaponControl();
+            weaponControl.NameLable.Text = weaponName;
+            weaponControl.RarityLable.Text = weapon.Rarity;
+            weaponControl.BaseAtkLable.Text = weapon.BaseAttack.ToString();
+            weaponControl.TypeLable.Text = weapon.Type;
+            weaponControl.SubstatLable.Text = weapon.SubStat;
+            weaponControl.PassiveLable.Text = weapon.PassiveName;
+            weaponControl.LocationLable.Text = weapon.Location;
+            weaponControl.DescriptionLable.Text = weapon.PassiveDesc;
 
-            string weaponInfo =
-                $"Name: {weapon.Name}\n" +
-                $"type: {weapon.Type}\n" +
-                $"Rarity: {weapon.Rarity}\n" +
-                $"Base Attack: {weapon.BaseAttack}\n" +
-                $"Sub Stat: {weapon.SubStat}\n" +
-                $"Passive Name: {weapon.PassiveName}\n";
+            Image image = CreateImage($"https://api.genshin.dev/weapons/{weaponName}/icon");
 
-            chatBox.Items.Add(CreateImage($"https://api.genshin.dev/weapons/{weaponName}/icon"));
-            chatBox.Items.Add(weaponInfo);
+            weaponControl.WeaponIcon.Source = image.Source;
+            chatBox.Items.Add(weaponControl);
         }
 
 
-        // [TODO] Should probably be moved somewhere else
+        // [TODO] Should probably be moved somewhere else [name] imagehandler.dk
         Image CreateImage(string path)
         {
             Image icon = new Image();

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="HiSeer.src.UserControls.CharacterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HiSeer.src.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="335" d:DesignWidth="280" MaxWidth="280">
+    <Grid Background="#FF3B4150">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Image x:Name="CharacterImage" HorizontalAlignment="Center" Margin="10"></Image>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock FontSize="20" x:Name="NameLable" HorizontalAlignment="Center" Foreground="White">n/a</TextBlock>
+            <TextBlock FontSize="18" x:Name="RarityLable" HorizontalAlignment="Center" Foreground="#FFECCC68" Margin="0,22,0,0">n/a</TextBlock>
+            <TextBlock FontSize="18" x:Name="BirthdayLable" HorizontalAlignment="Center" Foreground="White" Margin="0,40,0,0">n/a</TextBlock>
+            <TextBlock FontSize="18" x:Name="WeaponLable" HorizontalAlignment="Center" Foreground="White" Margin="0,60,0,0">n/a</TextBlock>
+            <TextBlock FontSize="10" x:Name="VisionLable" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Margin="2,0,0,28">n/a</TextBlock>
+            <TextBlock FontSize="10" x:Name="AffiliationLable" HorizontalAlignment="left" VerticalAlignment="Bottom" Foreground="White" Margin="2,0,0,15">n/a</TextBlock>
+            <TextBlock FontSize="10" x:Name="NationLable" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Margin="2">n/a</TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <TextBlock HorizontalAlignment="Center" Foreground="White">Description</TextBlock>
+            <TextBox x:Name="DescriptionLable" Margin="10, 20, 10, 10" Background="#FF3B4150" Foreground="White" TextWrapping="Wrap"></TextBox>
+        </Grid>
+    </Grid>
+</UserControl>
