@@ -49,12 +49,27 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <ListBox x:Name="ChatBox"
-                      Background="#57606f"
-                      BorderThickness="0"
-                      Height="370" 
-                      Width="315"
-                      VerticalAlignment="Bottom" Loaded="OnLoadedChatBox" Foreground="White" Focusable="False" BorderBrush="{x:Null}"/>
+            <ScrollViewer Height="370" 
+                          Width="315" 
+                          Background="#57606f" ScrollViewer.VerticalScrollBarVisibility="Auto" DockPanel.Dock="Left">
+                <ListBox 
+		                x:Name="ChatBox"
+                        BorderThickness="0"
+                        Loaded="OnLoadedChatBox"
+		                IsSynchronizedWithCurrentItem="true"
+		                HorizontalContentAlignment="Stretch"
+		                ScrollViewer.IsDeferredScrollingEnabled="True"
+		                VirtualizingStackPanel.IsVirtualizing="True"
+		                ItemsSource="{Binding XPath=./WritingsReference}">
+                    <ListBox.Template>
+                        <ControlTemplate TargetType="ListBox">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderBrush}">
+                                <ItemsPresenter/>
+                            </Border>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                </ListBox>
+            </ScrollViewer>
         </Grid>
 
         <Grid Grid.Row="2">
