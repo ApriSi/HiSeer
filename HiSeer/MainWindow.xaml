@@ -65,6 +65,5 @@
                      Width="315"
                      Height="25" KeyDown="InputGetKeyDown"/>
         </Grid>
-        <Frame x:Name="PageContent" Grid.Row="1" Grid.RowSpan="2" NavigationUIVisibility="Hidden" Foreground="Black"/>
     </Grid>
 </Window>
