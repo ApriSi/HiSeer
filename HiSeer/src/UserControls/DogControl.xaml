@@ -16,7 +16,7 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <TextBlock x:Name="BreedLable" HorizontalAlignment="Center" Foreground="White">Breed</TextBlock>
+            <TextBlock x:Name="BreedLable" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontFamily="Arial Black" FontSize="20">Breed</TextBlock>
         </Grid>
     </Grid>
 </UserControl>
