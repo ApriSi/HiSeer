@@ -137,6 +137,9 @@
     <Compile Include="src\UserControls\CharacterControl.xaml.cs">
       <DependentUpon>CharacterControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\UserControls\DogControl.xaml.cs">
+      <DependentUpon>DogControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\UserControls\WeaponControl.xaml.cs">
       <DependentUpon>WeaponControl.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="src\UserControls\CharacterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\UserControls\DogControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

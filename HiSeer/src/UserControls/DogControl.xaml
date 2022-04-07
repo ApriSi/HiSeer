@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="HiSeer.src.UserControls.DogControl"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HiSeer.src.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="280" MaxWidth="280">
+    <Grid Background="#FF3B4150">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Image x:Name="DogImage" HorizontalAlignment="Center" Margin="10"></Image>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <TextBlock x:Name="BreedLable" HorizontalAlignment="Center" Foreground="White">Breed</TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>
+

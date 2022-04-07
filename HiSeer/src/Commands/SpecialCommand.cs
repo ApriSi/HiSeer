@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using HiSeer.src.UserControls;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Windows.Controls;
 
 namespace HiSeer.src.Commands
@@ -20,7 +22,7 @@ namespace HiSeer.src.Commands
                     Clear(chatBox);
                     break;
                 case "dog":
-                    Dog(chatBox);
+                    Dog(chatBox, null);
                     break;
             }
         }
@@ -31,6 +33,9 @@ namespace HiSeer.src.Commands
             {
                 case "reply":
                     Reply(chatBox, parameter);
+                    break;
+                case "dog":
+                    Dog(chatBox, parameter);
                     break;
             }
         }
@@ -50,12 +55,38 @@ namespace HiSeer.src.Commands
             chatBox.Items.Add(text);
         }
 
-        void Dog(ListBox chatbox)
+        void Dog(ListBox chatbox, string[] parameter)
         {
-            string json = WebsiteRequest.GetWebJson($"https://dog.ceo/api/breeds/image/random", null);
+            string json;
+
+            if (parameter != null)
+            {
+                string parm = parameter[1].ToLower().Replace('-', '/');
+                json = WebsiteRequest.GetWebJson($"https://dog.ceo/api/breed/{parm}/images/random", null);
+            }
+            else
+            {
+                json = WebsiteRequest.GetWebJson($"https://dog.ceo/api/breeds/image/random", null);
+            }
+
             var obj = JsonConvert.DeserializeObject(json) as JObject;
-            Image image = ImageHandler.CreateImage(obj["message"].ToString());
-            chatbox.Items.Add(image);
+            string dog = obj["message"].ToString();
+
+            Image image = ImageHandler.CreateImage(dog);
+            string breed = dog.Substring(dog.LastIndexOf("/breeds/") + 8);
+
+            int index = breed.LastIndexOf("/");
+
+            if (breed.LastIndexOf("/") > 0)
+                breed = breed.Substring(0, index);
+
+            breed = breed.Replace("-", " ");
+
+            DogControl dogControl = new DogControl();
+            dogControl.BreedLable.Text = breed;
+            dogControl.DogImage.Source = image.Source;
+
+            chatbox.Items.Add(dogControl);
         }
     }
 }

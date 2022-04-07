@@ -28,7 +28,7 @@
     },
     "2": {
       "commandName": "dog",
-      "commandUsage": "/dog"
+      "commandUsage": "/dog Optionals: Breed-Subbreed"
     }
   },
   "GenshinCommands": {
