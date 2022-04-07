@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using HiSeer.src.UserControls;
 
 namespace HiSeer.src.Commands
 {
@@ -30,17 +31,26 @@ namespace HiSeer.src.Commands
 
             Weather weather = JsonConvert.DeserializeObject<Weather>(json);
 
-            string weatherInfo =
-                $"Cloud: {weather.Cloud_pct}%\n" +
-                $"Temperature: {weather.Temp}°C\n" +
-                $"Feels like: {weather.Feels_like}°C\n" +
-                $"Humidity: {weather.Humidity}%\n" +
-                $"Min temperature: {weather.Min_temp}°C\n" +
-                $"Max temperature: {weather.Max_temp}°C\n" +
-                $"Wind speed: {weather.Wind_speed}M/s\n" +
-                $"Wind  degrees: {weather.Wind_degrees}°";
+            WeatherControl weatherControl = new WeatherControl();
 
-            chatBox.Items.Add(weatherInfo);
+            if (weather.Cloud_pct > 45)
+                weatherControl.WeatherLabel.Text = "☁️";
+            else if (weather.Cloud_pct > 15)
+                weatherControl.WeatherLabel.Text = "⛅";
+            else
+                weatherControl.WeatherLabel.Text = "☀️";
+
+            weatherControl.LocationLabel.Text = parameter[1].ToUpper();
+            weatherControl.TemperatureLabel.Text = "Temperature: " + weather.Temp.ToString() + "°C";
+            weatherControl.FeelsLikeLabel.Text = "Feels Like: " + weather.Feels_like.ToString() + "°C";
+            weatherControl.MinTemperatureLabel.Text = "Min Temperature: " + weather.Min_temp.ToString() + "°C";
+            weatherControl.MaxTemperatureLabel.Text = "Max Temperature: " + weather.Max_temp.ToString() + "°C";
+            weatherControl.CloudPercentageLabel.Text = "Cloud Coverage: " + weather.Cloud_pct.ToString() + "%";
+            weatherControl.WindSpeedLabel.Text = "Wind Speed: " + weather.Wind_speed.ToString() + "m/s";
+            weatherControl.WindDegreesLabel.Text = "Wind Degrees: " + weather.Wind_degrees.ToString() + "°";
+            weatherControl.HumidityLabel.Text = "Humidity: " + weather.Humidity.ToString();
+
+            chatBox.Items.Add(weatherControl);
         }
     }
 }

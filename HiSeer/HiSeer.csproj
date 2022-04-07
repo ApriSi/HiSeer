@@ -140,6 +140,9 @@
     <Compile Include="src\UserControls\WeaponControl.xaml.cs">
       <DependentUpon>WeaponControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\UserControls\WeatherControl.xaml.cs">
+      <DependentUpon>WeatherControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\Weather.cs" />
     <Compile Include="src\WebsiteRequest.cs" />
     <Page Include="MainWindow.xaml">
@@ -159,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="src\UserControls\WeaponControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\UserControls\WeatherControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
