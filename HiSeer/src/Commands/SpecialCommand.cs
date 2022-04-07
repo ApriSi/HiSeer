@@ -1,61 +1,93 @@
 ﻿using HiSeer.src.UserControls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace HiSeer.src.Commands
 {
     public class SpecialCommand : Command
     {
-        string name;
-        public SpecialCommand(string commandName, string commandUsage) : base(commandName, commandUsage)
+        public SpecialCommand(string commandName, string commandUsage, ItemsControl chatBox) : base(commandName, commandUsage, chatBox)
         {
-            name = commandName;
         }
 
-        public override void ExecuteCommand(ListBox chatBox)
+        public override void ExecuteCommand()
         {
-            switch (name)
+            switch (GetName())
             {
                 case "clear":
-                    Clear(chatBox);
+                    Clear();
                     break;
                 case "dog":
-                    Dog(chatBox, null);
+                    Dog(null);
+                    break;
+                case "help":
+                    HelpCommand(null);
                     break;
             }
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
+        public override void ExecuteCommand(string[] parameter)
         {
-            switch (name)
+            switch (GetName())
             {
                 case "reply":
-                    Reply(chatBox, parameter);
+                    Reply(parameter);
                     break;
                 case "dog":
-                    Dog(chatBox, parameter);
+                    Dog(parameter);
+                    break;
+                case "help":
+                    HelpCommand(parameter);
                     break;
             }
         }
 
-        void Clear(ListBox chatBox)
+        void Clear()
         {
-            chatBox.Items.Clear();
+            ChatBox.Items.Clear();
         }
 
-        void Reply(ListBox chatBox, string[] parameter)
+        void HelpCommand(string[] parameter)
+        {
+            var window = (MainWindow)Application.Current.MainWindow;
+            string commandList = string.Empty;
+            if(parameter != null)
+            {
+                foreach (var command in window.GetCommands())
+                {
+                    if (command.GetType().Name.ToLower() == parameter[1].ToLower())
+                        commandList += command.GetUsage() + "\n";
+                }
+            } else
+            {
+                foreach (var command in window.GetCommands())
+                {
+                    commandList += command.GetUsage() + "\n";
+                }
+            }
+
+            TextBlock textBlock = new TextBlock();
+            textBlock.Foreground = Brushes.White;
+            textBlock.Text = commandList;
+            textBlock.Margin = new Thickness(3,0,0,0);
+
+            ChatBox.Items.Add(textBlock);
+        }
+
+        void Reply(string[] parameter)
         {
             string text = "";
             for (int i = 1; i < parameter.Length; i++)
             {
                 text += " " + parameter[i];
             }
-            chatBox.Items.Add(text);
+            ChatBox.Items.Add(text);
         }
 
-        void Dog(ListBox chatbox, string[] parameter)
+        void Dog(string[] parameter)
         {
             string json;
 
@@ -86,7 +118,7 @@ namespace HiSeer.src.Commands
             dogControl.BreedLable.Text = breed;
             dogControl.DogImage.Source = image.Source;
 
-            chatbox.Items.Add(dogControl);
+            ChatBox.Items.Add(dogControl);
         }
     }
 }

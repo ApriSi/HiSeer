@@ -6,20 +6,20 @@ namespace HiSeer.src.Commands
     public class TextCommand : Command
     {
         string output;
-        public TextCommand(string commandName, string commandUsage, string output) : base(commandName, commandUsage)
+        public TextCommand(string commandName, string commandUsage, ItemsControl chatBox, string output) : base(commandName, commandUsage, chatBox)
         {
             this.output = output;
         }
 
-        public override void ExecuteCommand(ListBox chatBox)
+        public override void ExecuteCommand()
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Text = output;
             textBlock.Foreground = Brushes.White;
-            chatBox.Items.Add(textBlock);
+            ChatBox.Items.Add(textBlock);
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
+        public override void ExecuteCommand(string[] parameter)
         {
             throw new System.NotImplementedException();
         }

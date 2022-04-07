@@ -8,21 +8,21 @@ namespace HiSeer.src.Commands
 {
     public class WeatherCommand : Command
     {
-        public WeatherCommand(string commandName, string commandUsage) : base(commandName, commandUsage)
+        public WeatherCommand(string commandName, string commandUsage, ItemsControl chatBox) : base(commandName, commandUsage, chatBox)
         {
         }
 
-        public override void ExecuteCommand(ListBox chatBox)
+        public override void ExecuteCommand()
         {
             throw new NotImplementedException();
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
+        public override void ExecuteCommand(string[] parameter)
         {
-            GetWeatherInfo(chatBox, parameter);
+            GetWeatherInfo(parameter);
         }
 
-        void GetWeatherInfo(ListBox chatBox, string[] parameter)
+        void GetWeatherInfo(string[] parameter)
         {
             Dictionary<string, string> headers = new Dictionary<string, string>();
             headers.Add("X-RapidAPI-Host", "weather-by-api-ninjas.p.rapidapi.com");
@@ -50,7 +50,7 @@ namespace HiSeer.src.Commands
             weatherControl.WindDegreesLabel.Text = "Wind Degrees: " + weather.Wind_degrees.ToString() + "°";
             weatherControl.HumidityLabel.Text = "Humidity: " + weather.Humidity.ToString();
 
-            chatBox.Items.Add(weatherControl);
+            ChatBox.Items.Add(weatherControl);
         }
     }
 }

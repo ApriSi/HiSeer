@@ -6,15 +6,15 @@ namespace HiSeer.src.Commands
 {
     public class ImageCommand : Command
     {
-        public ImageCommand(string commandName, string commandUsage) : base(commandName, commandUsage)
+        public ImageCommand(string commandName, string commandUsage, ItemsControl chatBox) : base(commandName, commandUsage, chatBox)
         {
         }
 
-        public override void ExecuteCommand(ListBox chatBox)
+        public override void ExecuteCommand()
         {
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
+        public override void ExecuteCommand(string[] parameter)
         {
             Image image = new Image();
             try
@@ -23,7 +23,7 @@ namespace HiSeer.src.Commands
                 image.Source = new BitmapImage(uri);
 
                 image.Width = 280;
-                chatBox.Items.Add(image);
+                ChatBox.Items.Add(image);
             } catch
             {
                 Console.WriteLine("Not valid image");

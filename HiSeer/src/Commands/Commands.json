@@ -29,6 +29,10 @@
     "2": {
       "commandName": "dog",
       "commandUsage": "/dog Optionals: Breed-Subbreed"
+    },
+    "3": {
+      "commandName": "help",
+      "commandUsage": "/help Optionals: SpecialCommand,\nGenshinCommand, TextCommand, WeatherCommand"
     }
   },
   "GenshinCommands": {

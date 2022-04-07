@@ -52,23 +52,23 @@
             <ScrollViewer Height="370" 
                           Width="315" 
                           Background="#57606f" ScrollViewer.VerticalScrollBarVisibility="Auto" DockPanel.Dock="Left">
-                <ListBox 
+                <ItemsControl 
 		                x:Name="ChatBox"
                         BorderThickness="0"
                         Loaded="OnLoadedChatBox"
-		                IsSynchronizedWithCurrentItem="true"
+                        Foreground="White"
 		                HorizontalContentAlignment="Stretch"
 		                ScrollViewer.IsDeferredScrollingEnabled="True"
 		                VirtualizingStackPanel.IsVirtualizing="True"
 		                ItemsSource="{Binding XPath=./WritingsReference}">
-                    <ListBox.Template>
-                        <ControlTemplate TargetType="ListBox">
+                    <ItemsControl.Template>
+                        <ControlTemplate TargetType="ItemsControl">
                             <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderBrush}">
                                 <ItemsPresenter/>
                             </Border>
                         </ControlTemplate>
-                    </ListBox.Template>
-                </ListBox>
+                    </ItemsControl.Template>
+                </ItemsControl>
             </ScrollViewer>
         </Grid>
 

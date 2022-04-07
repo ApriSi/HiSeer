@@ -9,30 +9,30 @@ namespace HiSeer.src.Commands
     public class GenshinCommand : Command
     {
         string name;
-        public GenshinCommand(string commandName, string commandUsage) : base(commandName, commandUsage)
+        public GenshinCommand(string commandName, string commandUsage, ItemsControl chatBox) : base(commandName, commandUsage, chatBox)
         {
             name = commandName;
         }
 
-        public override void ExecuteCommand(ListBox chatBox)
+        public override void ExecuteCommand()
         {
             throw new NotImplementedException();
         }
 
-        public override void ExecuteCommand(ListBox chatBox, string[] parameter)
+        public override void ExecuteCommand(string[] parameter)
         {
             switch (name)
             {
                 case "character":
-                    GetCharacterInfo(chatBox, parameter[1]);
+                    GetCharacterInfo(parameter[1]);
                     break;
                 case "weapon":
-                    GetWeaponInfo(chatBox, parameter[1]);
+                    GetWeaponInfo(parameter[1]);
                     break;
             }
         }
         
-        void GetCharacterInfo(ListBox chatBox, string name)
+        void GetCharacterInfo(string name)
         {
             string characterName = name.ToLower();
 
@@ -52,10 +52,10 @@ namespace HiSeer.src.Commands
             Image image = ImageHandler.CreateImage($"https://api.genshin.dev/characters/{characterName}/card");
 
             characterControl.CharacterImage.Source = image.Source;
-            chatBox.Items.Add(characterControl);
+            ChatBox.Items.Add(characterControl);
         }
 
-        void GetWeaponInfo(ListBox chatBox, string name)
+        void GetWeaponInfo(string name)
         {
             string weaponName = name.ToLower();
 
@@ -74,7 +74,7 @@ namespace HiSeer.src.Commands
             Image image = ImageHandler.CreateImage($"https://api.genshin.dev/weapons/{weaponName}/icon");
 
             weaponControl.WeaponIcon.Source = image.Source;
-            chatBox.Items.Add(weaponControl);
+            ChatBox.Items.Add(weaponControl);
         }
     }
 }

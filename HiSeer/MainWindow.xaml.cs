@@ -23,13 +23,12 @@ namespace HiSeer
 
         private void OnLoadedChatBox(object sender, RoutedEventArgs e)
         {
-            commands.Add(new ImageCommand("image", "/image url"));
+            commands.Add(new ImageCommand("image", "/image url", ChatBox));
 
             LoadCommandsFromJson<SpecialCommand>("SpecialCommands");
             LoadCommandsFromJson<GenshinCommand>("GenshinCommands");
             LoadCommandsFromJson<TextCommand>("TextCommands");
             LoadCommandsFromJson<WeatherCommand>("WeatherCommands");
-            HelpCommand();
         }
 
         private void InputGetKeyDown(object sender, KeyEventArgs e)
@@ -44,9 +43,10 @@ namespace HiSeer
                         try
                         {
                             if (commandName.Length > 1 && commandName[1] != null)
-                                command.ExecuteCommand(ChatBox, commandName);
+                                command.ExecuteCommand(commandName);
                             else
-                                command.ExecuteCommand(ChatBox);
+                                command.ExecuteCommand();
+                            CommandInput.Text = "";
                         } catch (Exception ex)
                         {
                             Console.WriteLine(ex);
@@ -57,16 +57,6 @@ namespace HiSeer
             }
         }
 
-        private void HelpCommand()
-        {
-            string commandList = "/help";
-            foreach (Command cmd in commands)
-            {
-                commandList += "\n" + cmd.GetUsage();
-            }
-            commands.Add(new TextCommand("help", "/help", commandList));
-        }
-
         private void LoadCommandsFromJson<T>(string commandType)
         {
             JObject cmds = JsonHandler.GetJsonObject($@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}/src/Commands/Commands.json");
@@ -74,8 +64,12 @@ namespace HiSeer
             for (int i = 0; i < length; i++)
             {
                 T command = JsonConvert.DeserializeObject<T>(cmds[commandType][i.ToString()].ToString());
-                commands.Add(command as Command);
+                Command cmd = command as Command;
+                cmd.ChatBox = ChatBox;
+                commands.Add(cmd);
             }
         }
+
+        public List<Command> GetCommands() => commands;
     }
 }
