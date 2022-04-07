@@ -78,7 +78,7 @@
                      BorderThickness="0" Foreground="White"
                      Background="#57606f"
                      Width="315"
-                     Height="25" KeyDown="InputGetKeyDown" GotFocus="CommandInputOnGotFocus"/>
+                     Height="25" KeyDown="InputGetKeyDown" GotMouseCapture="CommandInputGetMouseCapture"/>
         </Grid>
     </Grid>
 </Window>

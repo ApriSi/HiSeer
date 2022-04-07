@@ -72,6 +72,6 @@ namespace HiSeer
 
         public List<Command> GetCommands() => commands;
 
-        private void CommandInputOnGotFocus(object sender, RoutedEventArgs e) => CommandInput.Text = "";
+        private void CommandInputGetMouseCapture(object sender, MouseEventArgs e) => CommandInput.Text = "";
     }
 }
